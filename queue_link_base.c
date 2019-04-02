@@ -39,18 +39,22 @@ void NewItem(Queue Q, e_type a)
 	struct Node *FNode;
 	FNode=(struct Node *)malloc(sizeof(struct Node));
 	FNode->Data=a;
-
-	if(Q->front==NULL)		//	if-else语句没有被执行
+	//printf("a");
+	if(Q->front==NULL)		
 	{
+		//printf("b");
 		Q->rear=FNode;
 		Q->front=FNode;
 		FNode->Next=NULL;
+		
 	}
 	else
 	{
+		//printf("c");
 		Q->rear->Next=FNode;
 		Q->rear=FNode;
 		FNode->Next=NULL;
+		
 	}
 	
 }
@@ -70,7 +74,7 @@ void PrintQueue(Queue Q)
 	struct Node *InterNode;
 	InterNode=(struct Node *)malloc(sizeof(struct Node));
 	InterNode=Q->front;
-	while(InterNode->Next!=NULL)
+	while(InterNode!=NULL)
 	{
 		printf("%d\n",InterNode->Data);
 		InterNode=InterNode->Next;
@@ -80,11 +84,12 @@ void PrintQueue(Queue Q)
 int main()
 {
 	Queue Q;
-	CreateQueue();
+	Q=CreateQueue();
 	NewItem(Q,1);
 	NewItem(Q,2);
 	NewItem(Q,3);
 	RemoveItem(Q);
+	//printf("%d%d%d",Q->front->Data,Q->front->Next->Data,Q->front->Next->Next->Data);
 	PrintQueue(Q);
 	system("pause");
 	return 0;
