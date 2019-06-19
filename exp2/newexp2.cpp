@@ -81,12 +81,14 @@ cout<<T->val<<endl;
 if(T->rtree!=NULL)printree2(T->rtree);
 }
 
-void printree3(Tree T)
+int printree3(Tree T) //函数被简单改写来配合另外两个班型的实验需求 原本形式和12一致
 {
-
+static int count=0;
+if(T->ltree==NULL && T->rtree)count++;
 if(T->ltree!=NULL)printree3(T->ltree);
 if(T->rtree!=NULL)printree3(T->rtree);
 cout<<T->val<<endl;
+return count;
 }
 
 
@@ -95,6 +97,7 @@ int main()
 {
 	Tree ans;
 	int temp1;
+	int cut;
 	cout<<"输入根节点"<<endl;
 	cin>>temp1;
 	ans=Initialnode(temp1);
@@ -109,6 +112,8 @@ int main()
 	cout<<"中序遍历"<<endl;
 	printree2(ans);
 	cout<<"后序遍历"<<endl;
-	printree3(ans);
+	cut=printree3(ans);
+	cout<<"一共有这些叶节点"<<endl;
+	cout<<cut<<endl;
 	return 0;
 }
